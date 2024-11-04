@@ -1,14 +1,9 @@
-// var num = prompt('后面的答案' )
- 
+let num = Number(prompt('age'))
+alert(num >=65 || num <=18)
 
-// var kobei = num * num 
+let num1 = Number(prompt("san"))
+alert(num1 >=10 && num1 <=20)
 
-// alert("жауабы " + kobei)
-
-var num = Number(prompt('width'))
-var num1 = Number(prompt('height'))
-
-var square = num * num1 
-var p = (num+num1)*2
-
-alert("natizhesy " + square + '\n' + "zhauaby" + p)
+let num2 = 5;
+let num3 = -7;
+alert(num2 >=0 && num3 <=0)
