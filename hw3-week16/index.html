@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo қосымшасы</title>
+    <style>
+        body { font-size: 40px; margin: 20px; background-color: blue;}
+        .task { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .task span { cursor: pointer; }
+        button { margin-left: 5px; }
+    </style>
+</head>
+<body>
+    <h2>ToDo қосымшасы</h2>
+    <input type="text" id="taskInput" placeholder="Жаңа тапсырма">
+    <button onclick="addTask()">Қосу</button>
+    <ul id="taskList"></ul>
+
+    <script src="index.js"></script>
+</body>
+</html>
