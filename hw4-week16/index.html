@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Posts</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#searchInput {
+  display: block;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+#addBlogSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#addBlogSection input, #addBlogSection textarea {
+  width: 80%;
+  max-width: 600px;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+#addBlogSection button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #6c63ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#addBlogSection button:hover {
+  background-color: #4d4db8;
+}
+
+#blogContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.blog {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.blog:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.delete-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #ff1a1a;
+}
+  </style>
+</head>
+<body>
+  <h1>开头</h1>
+
+  <input type="text" id="searchInput" placeholder="Search Blog Title">
+
+  <div id="addBlogSection">
+    <input type="text" id="blogTitleInput" placeholder="Blog Title">
+    <textarea id="blogContentInput" placeholder="Blog Content"></textarea>
+    <button id="addBlogButton">Add Blog</button>
+  </div>
+
+  <div id="blogContainer">
+  </div>
+
+  <script>
+const searchInput = document.getElementById('searchInput');
+const blogContainer = document.getElementById('blogContainer');
+const blogTitleInput = document.getElementById('blogTitleInput');
+const blogContentInput = document.getElementById('blogContentInput');
+const addBlogButton = document.getElementById('addBlogButton');
+
+addBlogButton.addEventListener('click', () => {
+  const title = blogTitleInput.value.trim();
+  const content = blogContentInput.value.trim();
+
+  if (title && content) {
+    const blog = document.createElement('div');
+    blog.className = 'blog';
+    blog.innerHTML = `
+      <h2>${title}</h2>
+      <p>${content}</p>
+      <button class="delete-btn">Delete</button>
+    `;
+
+    blog.querySelector('.delete-btn').addEventListener('click', () => {
+      blog.remove();
+    });
+
+    blogContainer.appendChild(blog);
+
+    blogTitleInput.value = '';
+    blogContentInput.value = '';
+  } else {
+    alert('Please fill in both the title and content.');
+  }
+});
+
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.toLowerCase();
+  const blogs = document.querySelectorAll('.blog');
+
+  blogs.forEach(blog => {
+    const title = blog.querySelector('h2').textContent.toLowerCase();
+    if (title.includes(query)) {
+      blog.style.display = 'block';
+    } else {
+      blog.style.display = 'none';
+    }
+  });
+});
+  </script>
+</body>
+</html>
